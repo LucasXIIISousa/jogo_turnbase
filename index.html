@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Batalha Herói vs Vilão</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+<audio id="background-music" loop>
+    <source src="./cenarios/Dark Souls_ Chiptune Demixes - Gwyn, Lord of Cinder.mp3" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+</audio>
+<div id="app">
+    <div class="battle-scene">
+        <div class="background">
+            <img src="cenarios/360_F_731885579_teGAUe4yiJVcIH5nlAEcxJSPlK1lGcMG.jpg" alt="Cenário">
+        </div>
+        <div class="hero-area">
+            <div class="name">{{ hero.name }}</div>
+            <div class="life-bar">
+                <span :style="{ width: (hero.life / 100) * 100 + '%' }"></span>
+                <div class="life-text">Vida: {{ hero.life }}/100</div>
+            </div>
+            <div class="sprite hero-sprite">
+                <img :src="hero.gif" alt="Herói">
+            </div>
+        </div>
+        <div class="villain-area">
+            <div class="name">{{ villain.name }}</div>
+            <div class="life-bar">
+                <span :style="{ width: (villain.life / 100) * 100 + '%' }"></span> 
+                <div class="life-text">Vida: {{ villain.life }}/100</div>
+            </div>
+            <div class="sprite villain-sprite">
+                <img :src="villain.gif" alt="Vilão">
+            </div>
+        </div>
+    </div>
+    <div class="actions-bar">
+        <div class="actions">
+            <button @click="attack(true)">Atacar</button>
+            <button @click="defense(true)">Defender</button>
+            <button @click="usePotion(true)">Usar Poção</button>
+            <button @click="run(true)">Correr</button>
+        </div>
+        <div class="turn-indicator">Turno: {{ currentTurn === 'hero' ? hero.name : villain.name }}</div>
+        <div class="action-history">
+            <h2>Histórico de Ações</h2>
+            <ul>
+                <li v-for="entry in history">{{ entry }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="feedback-screen" style="display: none;" class="feedback-screen">
+    <h2>{{ winner }} derrotou o vilão!</h2>
+    <p>Gostou do jogo?</p>
+    <label for="rating">Dê sua nota de 0 a 10:</label>
+    <input type="number" v-model="rating" id="rating" min="0" max="10">
+    
+    <label for="opinion">Deixe sua opinião e melhorias:</label>
+    <textarea v-model="opinion" id="opinion"></textarea>
+    
+    <div class="feedback-screen-buttons">
+        <button onclick="reloadPage()">Enviar</button>
+        <button onclick="reloadPage()">Jogar Novamente</button>
+    </div>
+</div>
+
+<script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Press Start 2P', cursive; 
+    font-size: 16px; 
+    color: #fff; 
+    letter-spacing: 2px; 
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, p, button, span, div {
+    text-shadow: 1px 1px 0px #000,   
+                 -1px 1px 0px #000,
+                 1px -1px 0px #000,
+                 -1px -1px 0px #000;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.battle-scene {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100% - 150px);
+    padding: 0 20px;
+    position: relative;
+    gap: 50px;
+}
+
+.background img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.hero-area, .villain-area {
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-area, .villain-area {
+    width: 300px;
+}
+
+.hero-area .sprite img, .villain-area .sprite img {
+    width: 100%;
+    height: auto;
+}
+
+.villain-area .sprite img {
+    transform: scaleX(-1);
+}
+
+.heal-pot {
+    position: absolute;
+    bottom: 30px;
+    animation: fadeInOut 1.5s ease-in-out;
+    width: 100px;
+    height: auto;
+    z-index: 3;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0); }
+}
+
+.name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.life-bar {
+    background-color: #000;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    height: 20px;
+    overflow: hidden;
+}
+
+.life-bar span {
+    display: block;
+    height: 100%;
+    transition: width 0.5s;
+    background-color: #f00;
+    width: 100%;
+    position: relative;
+}
+
+.life-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 10px;
+    left: 0;
+    color: #fff;
+}
+
+.actions-bar {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    z-index: 3;
+}
+
+.actions {
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #555;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #777;
+}
+
+.turn-indicator {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.action-history {
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: #222;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.action-history h2 {
+    margin-top: 0;
+}
+
+.action-history ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.action-history li {
+    background-color: #444;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.feedback-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 997;
+}
+
+.feedback-content {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+    z-index: 998;
+}
+
+.feedback-screen-buttons {
+    z-index: 999;
+}
+
+input, textarea {
+    width: 30%;
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: none;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    background-color: #555;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #777;
+}
+
+@media only screen and (max-width: 600px) {
+    .hero-area, .villain-area {
+        width: 200px;
+    }
+
+    .actions-bar {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .action-history {
+        max-height: 100px;
+    }
+}
